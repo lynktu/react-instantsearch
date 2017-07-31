@@ -3,8 +3,12 @@ title: Widgets
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 85
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 React InstantSearch provides a set of DOM widgets with pre-defined DOM structure and behavior.
 

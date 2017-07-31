@@ -3,8 +3,12 @@ title: Styling widgets
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 80
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 All widgets under the `react-instantsearch/dom` namespace are shipped with fixed CSS class names.
 
@@ -18,8 +22,8 @@ can also inspect the underlying DOM and style accordingly.
 You can style icons colors too, for example the `SearchBox` ones:
 
 ```css
-.ais-SearchBox__reset svg, 
-.ais-SearchBox__button svg { 
+.ais-SearchBox__reset svg,
+.ais-SearchBox__button svg {
   fill: red
 }
 ```

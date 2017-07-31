@@ -1,9 +1,12 @@
 ---
 title: React Native
+mainTitle: Getting Started
 layout: main.pug
-category: gettingstarted
+category: Getting started
 withHeadings: true
-navScroll: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
 
 ## Welcome to React InstantSearch

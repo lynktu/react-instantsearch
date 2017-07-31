@@ -3,8 +3,12 @@ title: Search state
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 55
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 The `searchState` contains all widgets states.
 If a widget uses an attribute, we store it under its widget category to prevent collision.
@@ -51,7 +55,7 @@ component, you'll get the following shape:
 ```js
 const searchState = {
   query: 'ora', //shared state between all indices
-  page: 2, //shared state between all indices 
+  page: 2, //shared state between all indices
   indices: {
     index1: {
       configure: {

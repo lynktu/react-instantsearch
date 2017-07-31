@@ -8,12 +8,10 @@ import sass from 'metalsmith-sass';
 import assets from './plugins/assets.js';
 import helpers from './plugins/helpers.js';
 import ignore from './plugins/ignore.js';
-import jsdoc from './plugins/jsdoc-data.js';
 import markdown from './plugins/markdown.js';
 import onlyChanged from './plugins/onlyChanged.js';
 import webpackEntryMetadata from './plugins/webpackEntryMetadata.js';
 import autoprefixer from './plugins/autoprefixer.js';
-import sources from './plugins/sources.js';
 
 // performance and debug info for metalsmith, when needed see usage below
 // import {start as perfStart, stop as perfStop} from './plugins/perf.js';
@@ -21,7 +19,7 @@ import sources from './plugins/sources.js';
 import webpackStartConfig from './webpack.config.start.babel.js';
 import webpackBuildConfig from './webpack.config.build.babel';
 
-import { reactPackage } from './path.js';
+import {rootPath} from './path.js';
 
 const common = [
   helpers,
@@ -29,23 +27,6 @@ const common = [
     source: './assets/',
     destination: './assets/',
   }),
-  assets({
-    source: './rootFiles',
-    destination: './',
-  }),
-  sources(
-    [
-      reactPackage('src/widgets/*.js'),
-      reactPackage('src/connectors/*.js'),
-      reactPackage('src/core/InstantSearch.js'),
-      reactPackage('src/core/Index.js'),
-      reactPackage('src/core/findResultsState.js'),
-    ],
-    {
-      ignore: '**/*.test.js',
-      computeFilename: filename => `${filename}.jsdoc`, // denotes jsdoc file but also avoid js ignore
-    }
-  ),
   ignore(fileName => {
     // This is a fix for VIM swp files inside src/,
     // We could also configure VIM to store swp files somewhere else
@@ -54,6 +35,9 @@ const common = [
 
     // if it's a build js file, keep it (`build`)
     if (/-build\.js$/.test(fileName)) return false;
+
+    // if it's an example JavaScript file, keep it
+    if (/examples\/(.*)?\.js$/.test(fileName)) return false;
 
     // if it's any other JavaScript file, ignore it, it's handled by build files above
     if (/\.js$/.test(fileName)) return true;
@@ -65,37 +49,33 @@ const common = [
     return false;
   }),
   markdown,
-  jsdoc(),
   headings('h2'),
   nav(),
   // After markdown, so that paths point to the correct HTML file
-  navigation(
-    {
-      core: {
-        sortBy: 'nav_sort',
-        filterProperty: 'nav_groups',
-      },
-      widget: {
-        sortBy: 'nav_sort',
-        filterProperty: 'nav_groups',
-      },
-      connector: {
-        sortBy: 'nav_sort',
-        filterProperty: 'nav_groups',
-      },
-      examples: {
-        sortBy: 'nav_sort',
-        filterProperty: 'nav_groups',
-      },
-      gettingstarted: {
-        sortBy: 'nav_sort',
-        filterProperty: 'nav_groups',
-      },
+  navigation({
+    core: {
+      sortBy: 'nav_sort',
+      filterProperty: 'nav_groups',
     },
-    {
-      navListProperty: 'navs',
-    }
-  ),
+    widget: {
+      sortBy: 'nav_sort',
+      filterProperty: 'nav_groups',
+    },
+    connector: {
+      sortBy: 'nav_sort',
+      filterProperty: 'nav_groups',
+    },
+    examples: {
+      sortBy: 'nav_sort',
+      filterProperty: 'nav_groups',
+    },
+    gettingstarted: {
+      sortBy: 'nav_sort',
+      filterProperty: 'nav_groups',
+    },
+  }, {
+    navListProperty: 'navs',
+  }),
   // perfStart(),
   sass({
     sourceMap: true,

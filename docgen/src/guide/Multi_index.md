@@ -3,8 +3,12 @@ title: Multi index
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 50
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 Whenever you want to:
 

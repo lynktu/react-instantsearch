@@ -3,8 +3,12 @@ title: Highlighting results
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 78
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 Search is all about helping users understand the results. This is especially true when using
 text based search. When a user types a query in the searchbox, the results
@@ -64,7 +68,7 @@ from the results. This function takes a single parameter object with three
 properties:
  - attributeName: the highlighted attribute name
  - hit: a single result object
- - highlightProperty: the path to the structure containing the highlighted attribute. The value is either `_highlightResult` or `_snippetResult` depending if you want to make an Highlight or Snippet widget. 
+ - highlightProperty: the path to the structure containing the highlighted attribute. The value is either `_highlightResult` or `_snippetResult` depending if you want to make an Highlight or Snippet widget.
 
 Those parameters are taken from the context in which the the custom component
 is used, therefore it's reasonable to have them as props.

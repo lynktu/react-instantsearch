@@ -3,8 +3,12 @@ title: Connectors
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 75
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 React InstantSearch provides [widgets](guide/Widgets.html) out of the box, those are great when you want
 a default style to be applied and you do not need heavy customization of the underlying DOM or behavior of

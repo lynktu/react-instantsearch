@@ -3,8 +3,12 @@ title: React Native
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 35
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 React InstantSearch is compatible with [react-native](https://facebook.github.io/react-native/)
 

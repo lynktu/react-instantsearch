@@ -1,10 +1,14 @@
 ---
-title: Conditional display
+title: Conditional Display
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 40
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 Using our connector and [`createConnector`](guide/Custom_connectors.html) approach, you can conditionally display content based on the search state.
 
@@ -75,7 +79,7 @@ const content = createConnector({
  });
 ```
 
-Alternatively, if you're using the search in List feature then you can know when the search results are loading by doing: 
+Alternatively, if you're using the search in List feature then you can know when the search results are loading by doing:
 
 ```jsx
 const content = createConnector({

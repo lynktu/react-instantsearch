@@ -1,8 +1,12 @@
 ---
 title: Widgets
+mainTitle:
 layout: main.pug
-category: widget
-showInNav: false
+category:
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
 
 Widgets are React components with predefined styling and behavior. You can use them in any DOM context.

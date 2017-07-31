@@ -3,8 +3,12 @@ title: Custom connectors
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 45
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 If you wish to implement features that are not covered by the default widgets connectors,
 you will need to create your own connector via the `createConnector` method.

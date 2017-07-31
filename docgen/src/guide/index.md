@@ -3,8 +3,12 @@ title: Welcome
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 100
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 React InstantSearch is the ultimate toolbox for creating instant-search experiences using [React](https://facebook.github.io/react/) and [Algolia](https://www.algolia.com/).
 

@@ -3,8 +3,12 @@ title: Default refinements
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 70
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 A frequent question that comes up is "How do I instantiate the [`<Menu>`](widgets/Menu.html)
 widget with a pre selected item?".

@@ -3,8 +3,12 @@ title: Searching in *Lists
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 68
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 You can allow the user to search inside lists of items like [`<RefinementList>`](widgets/RefinementList.html), [`<Menu>`](widgets/Menu.html) widgets
 or [`connectRefinementList`](connectors/connectRefinementList.html) and [`connectMenu`](widgets/Menu.html) connectors.

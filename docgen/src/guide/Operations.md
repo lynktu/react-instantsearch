@@ -3,8 +3,12 @@ title: Operations
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 52
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 [Algolia pricing](https://www.algolia.com/pricing) structure is based on operations and records.
 

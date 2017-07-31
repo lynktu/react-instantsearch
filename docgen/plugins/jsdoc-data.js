@@ -1,20 +1,21 @@
 import collectJson from 'collect-json';
 import jsdocParse from 'jsdoc-parse';
-import { forEach, groupBy } from 'lodash';
-import { hasChanged } from './onlyChanged.js';
-import { join } from 'path';
+import {forEach, groupBy} from 'lodash';
+import {hasChanged} from './onlyChanged.js';
+import {join} from 'path';
 
 let cachedFiles;
 
 export default function() {
   return function(files, metalsmith, done) {
-    const allFilles = Object.entries(files).reduce(
-      (memo, [filename, file]) =>
-        /\.jsdoc$/.test(filename)
-          ? [...memo, { filename: filename.replace(/\.jsdoc$/, ''), ...file }]
-          : memo,
-      []
-    );
+    const allFilles = Object
+      .entries(files)
+      .reduce((memo, [filename, file]) =>
+        (/\.jsdoc$/).test(filename) ?
+          [...memo, {filename: filename.replace(/\.jsdoc$/, ''), ...file}] :
+          memo,
+        []
+      );
 
     const filesToParse = allFilles
       .filter(file => hasChanged(file))
@@ -23,7 +24,7 @@ export default function() {
     if (cachedFiles) {
       // remove any file from cache not present in filestoparse
       Object.entries(cachedFiles).forEach(([buildFilename, file]) => {
-        if (!allFilles.some(({ filename }) => file.filename === filename)) {
+        if (!allFilles.some(({filename}) => file.filename === filename)) {
           delete cachedFiles[buildFilename];
         } else {
           files[buildFilename] = cachedFiles[buildFilename];
@@ -33,7 +34,7 @@ export default function() {
       cachedFiles = {};
     }
 
-    allFilles.forEach(({ filename }) => delete files[`${filename}.jsdoc`]);
+    allFilles.forEach(({filename}) => delete files[`${filename}.jsdoc`]);
 
     if (filesToParse.length === 0) {
       done();
@@ -48,13 +49,9 @@ export default function() {
     function dataReady(unfilteredSymbols) {
       const symbolsByCategory = groupBy(
         unfilteredSymbols.filter(
-          o =>
-            !o.deprecated &&
+          o => !o.deprecated &&
             o.kind &&
-            (o.kind === 'component' ||
-              o.kind === 'widget' ||
-              o.kind === 'connector' ||
-              o.kind === 'server-side-rendering')
+            (o.kind === 'component' || o.kind === 'widget' || o.kind === 'connector')
         ),
         'kind'
       );
@@ -63,17 +60,18 @@ export default function() {
         forEach(symbols, data => {
           const buildFilename = `${data.kind}s/${data.name}.html`;
           const customTags = parseCustomTags(data.customTags);
-          const isNameUnique =
-            unfilteredSymbols.map(s => s.name).filter(n => n === data.name)
-              .length === 1;
-          const title = isNameUnique ? data.name : `${data.name} ${data.kind}`;
+          const isNameUnique = unfilteredSymbols.map(s => s.name).filter(n => n === data.name).length === 1;
+          const title = isNameUnique ?
+            data.name :
+            `${data.name} ${data.kind}`;
 
-          const fileFromMetalsmith = allFilles.find(
-            ({ filename }) =>
+          const fileFromMetalsmith = allFilles
+            .find(
+              ({filename}) =>
               filename === join(data.meta.path, data.meta.filename)
-          );
+            );
 
-          cachedFiles[buildFilename] = {
+          files[buildFilename] = cachedFiles[buildFilename] = {
             ...data,
             ...customTags,
             mode: '0764',
@@ -81,18 +79,12 @@ export default function() {
             stats: fileFromMetalsmith && fileFromMetalsmith.stats,
             filename: fileFromMetalsmith && fileFromMetalsmith.filename,
             title,
-            mainTitle:
-              data.kind === 'server-side-rendering'
-                ? 'Server-side Rendering'
-                : `${data.kind.charAt(0).toUpperCase()}${data.kind.slice(1)}s`, //
+            mainTitle: `${data.kind.charAt(0).toUpperCase()}${data.kind.slice(1)}s`, //
             withHeadings: false,
             layout: `${data.kind}.pug`,
             category: data.kind,
-            navWeight:
-              data.name === 'InstantSearch' || data.name === 'Index' ? 1000 : 0,
+            navWeight: data.name === 'InstantSearch' ? 1000 : 0,
           };
-
-          files[buildFilename] = cachedFiles[buildFilename];
         });
       });
 
@@ -116,14 +108,13 @@ export default function() {
  * ]
  * the first square bracket is  matched in order to detect optional parameter
  */
-
-const typeNameValueDescription = /\{(.+)\} (?:(\[?)(\S+?)(?:=(\S+?))?]? - )?([\s\S]*)/;
+const typeNameValueDescription = /\{(.+)\} (?:(\[?)(\S+?)(?:=(\S+?))?]? - )?(.+)/;
 function parseTypeNameValueDescription(v) {
   const parsed = typeNameValueDescription.exec(v);
   if (!parsed) return null;
   return {
     type: parsed[1],
-    isRequired: parsed[2] !== '[',
+    isOptional: parsed[2] === '[',
     name: parsed[3],
     defaultValue: parsed[4],
     description: parsed[5],
@@ -134,8 +125,7 @@ function parseTypeNameValueDescription(v) {
  * This regexp aims to parse simple key description tag values. Example
  *  showMore - container for the show more button
  */
-
-const keyDescription = /(?:(\S+) - )?([\s\S]*)/;
+const keyDescription = /(?:(\S+) - )?(.+)/;
 function parseKeyDescription(v) {
   const parsed = keyDescription.exec(v);
   if (!parsed) return null;
@@ -156,16 +146,9 @@ function parseCustomTags(customTagObjects) {
   if (!customTagObjects) return {};
 
   const res = {};
-  customTagObjects.forEach(({ tag, value }) => {
+  customTagObjects.forEach(({tag, value}) => {
     const tagValueParser = customTagParsers[tag];
-
-    // when no custom tag parser found, just forward the value
-    // example: requirements
-    if (!tagValueParser) {
-      res[tag] = value;
-      return;
-    }
-
+    if (!tagValueParser) return;
     res[tag] = res[tag] || [];
     res[tag].push(tagValueParser(value));
   });

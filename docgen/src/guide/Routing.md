@@ -3,7 +3,10 @@ title: Routing and URLs
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 60
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
 
 React InstantSearch provides the necessary API entries to allow you to synchronize its state with the browser

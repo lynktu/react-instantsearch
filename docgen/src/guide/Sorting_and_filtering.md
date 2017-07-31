@@ -3,8 +3,12 @@ title: Sorting and filtering items
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 78
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 A frequent question that comes up is "How do I sort or filter the items of my widget".
 

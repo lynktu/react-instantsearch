@@ -1,5 +1,7 @@
+import markdown from 'markdown-it';
 import highlight from '../syntaxHighlighting.js';
-import md from '../mdRenderer.js';
+
+const md = markdown();
 
 // this plugin provides ATM one helper to easily compute the publicPath of assets
 export default function helpers(filenames, metalsmith, cb) {
@@ -13,9 +15,9 @@ export default function helpers(filenames, metalsmith, cb) {
     },
     maybeActive(navPath, singlePathOrArrayOfPaths) {
       const pathsToTest = [].concat(singlePathOrArrayOfPaths);
-      return pathsToTest.some(pathToTest => navPath.indexOf(pathToTest) === 0)
-        ? 'active'
-        : '';
+      return pathsToTest.some(pathToTest => navPath.indexOf(pathToTest) === 0) ?
+        'active' :
+        '';
     },
   };
 

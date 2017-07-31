@@ -3,8 +3,12 @@ title: Virtual widgets
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 65
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 A lot of websites have "category pages" where the search context is already refined without the user having
 to do it. For example an online shop for clothes could have a page like `https://www.clothes.com/hoodies`

@@ -3,8 +3,12 @@ title: Install
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 95
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 Install `react-instantsearch` using [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/):
 

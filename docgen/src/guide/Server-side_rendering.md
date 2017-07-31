@@ -3,8 +3,12 @@ title: Server-side rendering
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 30
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
+
 
 React InstantSearch is compatible with server-side rendering. We provide an API that can be used
 with any server-side rendering solution. Such as [Next.js](https://github.com/zeit/next.js/).

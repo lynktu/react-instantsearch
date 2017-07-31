@@ -3,7 +3,10 @@ title: Search parameters
 mainTitle: Guides
 layout: main.pug
 category: guide
-navWeight: 57
+withHeadings: true
+navWeight: 6
+editable: true
+githubSource: docs/docgen/src/getting-started/best-practices.md
 ---
 
 Algolia has a [wide range of parameters](https://www.algolia.com/doc/api-client/javascript/search#search-parameters). If one of the parameters you want to use is not covered by any widget or connector, then you can use the `<Configure>` widget.

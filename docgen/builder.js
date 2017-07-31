@@ -1,9 +1,12 @@
 /* eslint-disable no-console */
-
 import metalsmith from 'metalsmith';
 import config from './config.js';
 
-export default function builder({ clean = true, middlewares }, cb) {
+
+export default function builder({
+  clean = true,
+  middlewares,
+}, cb) {
   console.time('metalsmith build');
   // default source directory is join(__dirname, 'src');
   // https://github.com/metalsmith/metalsmith#sourcepath

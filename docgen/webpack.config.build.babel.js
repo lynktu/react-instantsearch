@@ -1,28 +1,25 @@
-// this is the webpack config when running `yarn docs:build`
+// this is the webpack config when running `npm run docs:build`
 
 import webpack from 'webpack';
 import webpackConfig from './webpack.config.babel.js';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-const { optimize: { UglifyJsPlugin } } = webpack;
+const {
+  optimize: {OccurenceOrderPlugin, UglifyJsPlugin},
+} = webpack;
 
 export default {
   ...webpackConfig,
-  devtool: 'source-map',
   output: {
     ...webpackConfig.output,
-    filename: '[name]-build.js', // hash is made with `plugins/rev-assets.js`
+    filename: '[name].[hash]-build.js', // hash names in production
   },
   plugins: [
+    new OccurenceOrderPlugin(), // spelling mistake fixed in webpack 2.0
     new UglifyJsPlugin({
-      sourceMap: true,
+      compress: {
+        warnings: false
+      },
     }),
     ...webpackConfig.plugins,
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      openAnalyzer: false,
-      generateStatsFile: true,
-      logLevel: 'error',
-    }),
   ],
 };
