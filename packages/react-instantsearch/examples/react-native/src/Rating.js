@@ -23,12 +23,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: 'white',
     flexGrow: 1,
-    ...Platform.select({
-      ios: {
-        marginTop: 63,
-      },
-      android: { marginTop: 50 },
-    }),
   },
 });
 

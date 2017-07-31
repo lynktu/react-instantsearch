@@ -24,12 +24,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: 'white',
     flexGrow: 1,
-    ...Platform.select({
-      ios: {
-        marginTop: 30,
-      },
-      android: { marginTop: 25 },
-    }),
   },
   filtersRow: {
     flexDirection: 'row',

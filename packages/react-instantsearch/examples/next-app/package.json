@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next",
     "build": "NODE_ENV=development next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "dependencies": {
     "css-loader": "^0.28.4",

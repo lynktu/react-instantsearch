@@ -36,12 +36,6 @@ const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   maincontainer: {
-    ...Platform.select({
-      ios: {
-        marginTop: 63,
-      },
-      android: { marginTop: 50 },
-    }),
     flex: 1,
   },
   items: {
@@ -49,7 +43,7 @@ const styles = StyleSheet.create({
       ios: {
         height: height - 170,
       },
-      android: { height: height - 185 },
+      android: { height: height - 165 },
     }),
   },
   item: {
