@@ -1,7 +1,6 @@
 import dropdowns from './dropdowns.js';
 import move from './mover.js';
 import activateClipboard from './activateClipboard.js';
-import bindRunExamples from './bindRunExamples.js';
 
 import {fixSidebar, followSidebarNavigation} from './fix-sidebar.js';
 

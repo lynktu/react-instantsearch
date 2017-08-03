@@ -3,32 +3,29 @@
 import webpack from 'webpack';
 import webpackConfig from './webpack.config.babel.js';
 
-const {
-  optimize: {OccurenceOrderPlugin},
-  HotModuleReplacementPlugin,
-  NoErrorsPlugin,
-} = webpack;
+const { HotModuleReplacementPlugin, NoEmitOnErrorsPlugin } = webpack;
 
 export default {
   ...webpackConfig,
-  devtool: 'source-map', // a lot faster than 'source-map', not ok for production though
+  devtool: 'cheap-module-eval-source-map',
   entry: {
-    ...(
-      Object
-        .entries(webpackConfig.entry)
-        .reduce((memo, [entryName, entryValue]) => ({
-          ...memo,
-          [entryName]: [
-            'webpack-hot-middleware/client?reload=true',
-            entryValue,
-          ],
-        }), {})
+    ...Object.entries(webpackConfig.entry).reduce(
+      (memo, [entryName, entryValue]) => ({
+        ...memo,
+        [entryName]: [
+          // this is react-hot-loader 3, current doc at
+          // https://github.com/gaearon/react-hot-loader/blob/123d940ff34c3178549fec9d57b9378ff48b4841/docs/README.md
+          'react-hot-loader/patch',
+          'webpack-hot-middleware/client?reload=true',
+          entryValue,
+        ],
+      }),
+      {}
     ),
   },
   plugins: [
-    new OccurenceOrderPlugin(), // spelling mistake fixed in webpack 2.0
     new HotModuleReplacementPlugin(),
-    new NoErrorsPlugin(),
+    new NoEmitOnErrorsPlugin(),
     ...webpackConfig.plugins,
   ],
 };
